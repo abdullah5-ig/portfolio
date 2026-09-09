@@ -65,7 +65,7 @@ export function Experience() {
       id="experience"
       eyebrow="Experience"
       title="Where the work happens"
-      intro="Research that changes what gets built, not research that sits in a folder."
+      intro="Where I have applied the analysis so far."
     >
       <div className="space-y-5">
         {experience.map((job, i) => (
@@ -235,13 +235,25 @@ export function Projects() {
       id="projects"
       eyebrow="Projects"
       title="Selected work"
-      intro="Real data, real findings. Each one links to the full code and write-up on GitHub."
+      intro="Real data, real findings. The two with links have the full code and write-up on GitHub."
     >
       <div className="grid gap-5 sm:grid-cols-2">
         {projects.map((p, i) => (
           <Reveal key={p.title} delay={0.06 * i}>
-            <article className="glass glass-hover group h-full rounded-4xl p-7">
-              <div className="relative z-10 flex h-full flex-col">
+            <article className="glass glass-hover group flex h-full flex-col overflow-hidden rounded-4xl">
+              {/* Optional chart/screenshot. Add `image: "/projects/name.png"`
+                  to a project in data/profile.js and it appears here. */}
+              {p.image ? (
+                <div className="relative z-10 border-b border-white/70 bg-white/55 p-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={p.image}
+                    alt={p.imageAlt || p.title}
+                    className="h-[190px] w-full rounded-2xl bg-white object-contain"
+                  />
+                </div>
+              ) : null}
+              <div className="relative z-10 flex flex-1 flex-col p-7">
                 <span className="w-fit rounded-full bg-accent-50 px-3 py-1 text-[11.5px] font-semibold uppercase tracking-[0.1em] text-accent-600">
                   {p.category}
                 </span>

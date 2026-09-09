@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { coreStack, profile, stats } from "../data/profile";
 import { Icon } from "./ui";
@@ -15,6 +16,24 @@ function up(delay) {
 }
 
 export default function Hero() {
+  // If public/profile.jpg is missing, fall back to the monogram. That way
+  // dropping the photo in is the only step — no code change needed, and
+  // nothing breaks before the file exists.
+  //
+  // onError alone is not enough: the image can fail BEFORE React hydrates,
+  // in which case the handler is not attached yet and the error is lost,
+  // leaving a broken-image icon. So we also check on mount whether the
+  // image finished loading with zero width, which is what a 404 looks like.
+  const [photoFailed, setPhotoFailed] = useState(false);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth === 0) setPhotoFailed(true);
+  }, []);
+
+  const showPhoto = Boolean(profile.photo) && !photoFailed;
+
   return (
     <section id="top" className="relative px-5 pb-14 pt-28 sm:px-8 sm:pb-20 sm:pt-40">
       <div className="mx-auto w-full max-w-5xl">
@@ -99,11 +118,13 @@ export default function Hero() {
           >
             <div className="glass aspect-square rounded-5xl p-2.5">
               <div className="relative z-10 flex h-full w-full items-center justify-center overflow-hidden rounded-[1.9rem] bg-gradient-to-br from-white/90 via-accent-50/70 to-[#e6fbf7]">
-                {profile.photo ? (
+                {showPhoto ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
+                    ref={imgRef}
                     src={profile.photo}
                     alt={profile.name}
+                    onError={() => setPhotoFailed(true)}
                     className="h-full w-full object-cover"
                   />
                 ) : (
@@ -126,7 +147,7 @@ export default function Hero() {
 
             <div className="glass absolute -bottom-4 -left-4 rounded-2xl px-4 py-3 sm:-left-6">
               <p className="relative z-10 text-[11px] font-medium uppercase tracking-[0.14em] text-ink-400">
-                Current
+                {profile.badgeLabel || "Focus"}
               </p>
               <p className="relative z-10 mt-0.5 text-[13px] font-semibold text-ink-900">
                 {profile.role}

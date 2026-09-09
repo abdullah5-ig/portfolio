@@ -54,15 +54,44 @@ Every future `git push` redeploys automatically.
 
 ### Add a profile photo
 
-1. Drop a square image into the `public/` folder, e.g. `public/profile.jpg`
-2. In `data/profile.js`, change:
+Just drop the file in. No code to change.
+
+1. Crop a photo to a **square**
+2. Name it exactly `profile.jpg`
+3. Put it in the `public` folder
+4. Commit and push
+
+If the file is not there, the site shows the `AN` monogram instead. Nothing
+breaks either way.
+
+Using a PNG? Name it `profile.png` and change one line in `data/profile.js`:
+`photo: "/profile.png",`
+
+### Add a certification
+
+Open `data/profile.js`, find the `certifications` list, and copy one of the
+blocks. Newest goes at the top.
 
 ```js
-photo: null,          //  before
-photo: "/profile.jpg",  //  after
+export const certifications = [
+  {
+    name: "Microsoft Power BI Data Analyst (PL-300)",
+    issuer: "Microsoft",
+  },
+  {
+    name: "Google Data Analytics Professional Certificate",
+    issuer: "Google · Coursera",
+  },
+];
 ```
 
-Until then the site shows a styled `AN` monogram.
+Every line inside a `{ }` block ends with a comma, and text goes inside
+`"quotes"`. A missing comma is the usual reason a build fails.
+
+### Mark a job as finished
+
+In the `experience` list, change `current: true` to `current: false` and set
+`period` to the end date, e.g. `"July 2026 — September 2026"`.
 
 ### Add projects
 
@@ -81,6 +110,38 @@ export const projects = [
   // ...add as many as you like — the grid handles the layout
 ];
 ```
+
+### Add a certification
+
+Open `data/profile.js` and find the `certifications` list. Copy one of the blocks
+and change the text. Newest goes at the top.
+
+```js
+export const certifications = [
+  {
+    name: "Microsoft Power BI Data Analyst (PL-300)",
+    issuer: "Microsoft",
+    inProgress: true,        // <- add this line while you are still studying
+  },
+  {
+    name: "Google Data Analytics Professional Certificate",
+    issuer: "Google · Coursera",
+  },
+];
+```
+
+`inProgress: true` shows a small blue **In progress** tag next to the name.
+Delete that line once you finish it and the tag disappears.
+
+Watch the punctuation: every line inside a `{ }` block ends with a comma, and
+text goes inside `"quotes"`. If the site fails to build, a missing comma or
+quote is almost always the reason.
+
+### Mark a job as finished
+
+In the `experience` list, change `current: true` to `current: false` and set the
+`period` to the end date, e.g. `"July 2026 — September 2026"`. That removes the
+green dot and the "Present" label.
 
 ### Everything else
 

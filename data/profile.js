@@ -5,15 +5,18 @@
 export const profile = {
   name: "Abdullah Naqvi",
   initials: "AN",
-  // Set to "/profile.jpg" after you drop a photo into the /public folder.
-  photo: null,
-  role: "Market Research Analyst", // current job title, shown on the hero badge
-  discipline: "Data Analyst", // your core discipline, shown under your name
-  headline: "Business Data Analytics @ COMSATS · Market Research Analyst @ Vertex Digital Ventures",
+  // Put a square photo at public/profile.jpg and it appears automatically.
+  // If the file is not there, the site falls back to the "AN" monogram.
+  photo: "/profile.jpg",
+  // Small badge under your photo. Label + value.
+  badgeLabel: "Focus",
+  role: "Data Analysis & BI",
+  discipline: "Data Analyst", // shown under your name
+  headline: "BS Business Data Analytics @ COMSATS University Islamabad · SQL · Python · Power BI",
   tagline:
     "I clean messy data, analyse it, and turn the result into something someone can actually make a decision with.",
   location: "Islamabad, Pakistan",
-  availability: "Open to data analytics, market research & product roles",
+  availability: "Open to data analyst, BI and analytics roles",
   links: {
     email: "abdullahnaqvi131@gmail.com",
     github: "https://github.com/abdullah5-ig",
@@ -33,7 +36,7 @@ export const stats = [
 export const about = {
   paragraphs: [
     "I'm a Business Data Analytics student at COMSATS University Islamabad, and data analysis is what I do. I work in SQL, Python, Power BI and Excel — cleaning messy data, running the analysis, and building the charts and reports that make a finding useful to someone who has to act on it.",
-    "I apply that as a Market Research Analyst at Vertex Digital Ventures, where I study US industries and buyers and test whether an opportunity is real before anyone spends money on it. The research is the context; the analysis underneath it is the part I own.",
+    "I put that to work during an internship at Vertex Digital Ventures, analysing US industry and buyer data to test whether an opportunity was real before anyone spent money on it. The research was the context; the analysis underneath it was the part I owned.",
     "What I care about is the question behind the numbers — not just what the data says, but whether it still holds up when you go looking for reasons it might not.",
   ],
   pillars: [
@@ -47,7 +50,7 @@ export const about = {
     },
     {
       title: "Research and validation",
-      body: "Applying that analysis to US market and customer research — sizing opportunities and testing whether the demand is really there.",
+      body: "Using that analysis for market and customer research — sizing opportunities and testing whether the demand is really there.",
     },
   ],
 };
@@ -56,17 +59,17 @@ export const experience = [
   {
     company: "Vertex Digital Ventures",
     role: "Market Research Analyst",
-    period: "July 2026 — Present",
+    period: "July 2026 — September 2026",
     location: "Pakistan · US Market Focus",
-    current: true,
+    current: false,
     summary:
-      "Real market research for products entering the US market — the kind of research that shapes what the team actually decides to build.",
+      "Analysed market and industry data for products entering the US market, to work out which opportunities were real enough to build.",
     points: [
-      "Collect, clean, and analyse market and industry data, then structure it into sized, comparable opportunities.",
-      "Run structured secondary research on US industries, buyers, and competitive landscapes.",
-      "Validate whether an opportunity is real before resources are committed to it.",
-      "Use AI tools to move faster from raw signal to a grounded, decision-ready call.",
-      "Turn messy findings into clear, evidence-backed conclusions the team can act on.",
+      "Collected, cleaned and analysed market and industry data, then structured it into sized, comparable opportunities.",
+      "Ran structured research on US industries, buyers and competitors.",
+      "Tested whether an opportunity was real before resources were committed to it.",
+      "Used AI tools to move faster from raw data to a clear conclusion.",
+      "Turned messy findings into evidence the team could act on.",
     ],
     tags: ["Data Analysis", "Idea Validation", "Market Analysis", "Competitive Analysis"],
   },
@@ -91,6 +94,8 @@ export const education = [
   },
 ];
 
+// ── Certifications ──────────────────────────────────────────────
+// To add one, copy a block and change the text. Newest at the top.
 export const certifications = [
   {
     name: "Google Data Analytics Professional Certificate",
@@ -114,6 +119,9 @@ export const skillGroups = [
       "Exploratory Data Analysis",
       "Joins & Aggregation",
       "Statistics",
+      "Statistical Modelling",
+      "Predictive Analytics",
+      "Machine Learning",
     ],
     featured: ["SQL", "Python"],
   },
@@ -128,6 +136,17 @@ export const skillGroups = [
       "Reporting",
     ],
     featured: ["Power BI", "Excel"],
+  },
+  {
+    title: "Financial Analysis",
+    items: [
+      "Portfolio Risk Analysis",
+      "CAPM",
+      "Beta & Volatility",
+      "Sharpe & Treynor Ratios",
+      "Performance Benchmarking",
+    ],
+    featured: [],
   },
   {
     title: "Analytics Workflow",
@@ -166,8 +185,33 @@ export const skillGroups = [
 ];
 
 // ── Your projects. Add a new object to this list for each one. ──
-// Shape: { title, category, body, tags: [], link: "https://..." | null }
+// Shape:
+//   title, category, body   (required)
+//   tags    : [] list of tools
+//   link    : "https://..." or null
+//   image   : "/projects/file.png" — optional chart or screenshot
+//   imageAlt: short description of the image, for screen readers
 export const projects = [
+  {
+    title: "Diabetes Risk Prediction",
+    category: "Machine Learning",
+    body: "A model that predicts diabetes risk from health and survey data, tested on 20,000 people. It gets 96% of cases right overall and catches 65% of the people who actually have diabetes, with very few false alarms — only 170 healthy people wrongly flagged. Built the whole pipeline in Python: cleaning the raw survey data, handling missing values and outliers, removing variables that measured the same thing twice, then training and tuning regression models and checking they held up statistically.",
+    tags: ["Python", "pandas", "NumPy", "scikit-learn", "Statistical Modelling"],
+    image: "/projects/diabetes-confusion-matrix.png",
+    imageAlt:
+      "Confusion matrix: 18,130 healthy correctly identified, 1,104 diabetic correctly identified, 170 false alarms, 596 missed cases",
+    link: null,
+  },
+  {
+    title: "Portfolio Risk & Return Analysis",
+    category: "Financial Analysis",
+    body: "Measured the risk and return of four listed companies — FFC, MARI, OGDC and FCCL — and built two portfolios from them. Calculated returns from historical price data, then measured how volatile each stock was and how much it moved with the wider market. Scored every asset on risk-adjusted return using the Sharpe ratio, Treynor ratio and Jensen's Alpha, and plotted them against the Security Market Line. The chart shows the finding: only FFC sits above the line, meaning it was the one asset paying more return than its risk level called for. The other three sat below it.",
+    tags: ["Excel", "CAPM", "Beta & Volatility", "Sharpe Ratio", "Data Visualisation"],
+    image: "/projects/security-market-line.png",
+    imageAlt:
+      "Security Market Line chart plotting return against beta for FFC, MARI, OGDC, FCCL and two portfolios",
+    link: null,
+  },
   {
     title: "Telco Customer Churn — who leaves, and who to call",
     category: "Prediction & Cost Analysis",
