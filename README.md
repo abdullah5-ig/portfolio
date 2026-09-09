@@ -52,13 +52,13 @@ Every future `git push` redeploys automatically.
 
 **Everything lives in one file: `data/profile.js`.** No other file needs touching.
 
-### Add a profile photo
+### Change the profile photo
 
-Just drop the file in. No code to change.
+Your photo is already in at `public/profile.jpg`. To swap it:
 
-1. Crop a photo to a **square**
+1. Crop the new photo to a **square**
 2. Name it exactly `profile.jpg`
-3. Put it in the `public` folder
+3. Drop it in the `public` folder, replacing the old one
 4. Commit and push
 
 If the file is not there, the site shows the `AN` monogram instead. Nothing
@@ -95,8 +95,8 @@ In the `experience` list, change `current: true` to `current: false` and set
 
 ### Add projects
 
-Both GitHub projects are **already in there**, with links to the repos. To add
-another, open `data/profile.js`, find the `projects` array, and add an entry:
+Five projects are already in there. To add another, open `data/profile.js`,
+find the `projects` array, and add an entry:
 
 ```js
 export const projects = [
@@ -106,42 +106,16 @@ export const projects = [
     body: "One or two sentences on what it does and what you found.",
     tags: ["SQL", "Power BI", "Validation"],
     link: "https://github.com/abdullah5-ig/repo",  // or null for no link
+    image: "/projects/my-chart.png",               // optional, or leave it out
+    imageAlt: "What the chart shows",
   },
   // ...add as many as you like — the grid handles the layout
 ];
 ```
 
-### Add a certification
-
-Open `data/profile.js` and find the `certifications` list. Copy one of the blocks
-and change the text. Newest goes at the top.
-
-```js
-export const certifications = [
-  {
-    name: "Microsoft Power BI Data Analyst (PL-300)",
-    issuer: "Microsoft",
-    inProgress: true,        // <- add this line while you are still studying
-  },
-  {
-    name: "Google Data Analytics Professional Certificate",
-    issuer: "Google · Coursera",
-  },
-];
-```
-
-`inProgress: true` shows a small blue **In progress** tag next to the name.
-Delete that line once you finish it and the tag disappears.
-
-Watch the punctuation: every line inside a `{ }` block ends with a comma, and
-text goes inside `"quotes"`. If the site fails to build, a missing comma or
-quote is almost always the reason.
-
-### Mark a job as finished
-
-In the `experience` list, change `current: true` to `current: false` and set the
-`period` to the end date, e.g. `"July 2026 — September 2026"`. That removes the
-green dot and the "Present" label.
+To show a chart or screenshot on the card, put the image file in
+`public/projects/` and point `image` at it, as above. Leave `image` out and the
+card is text only.
 
 ### Everything else
 
